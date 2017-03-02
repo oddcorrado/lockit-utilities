@@ -90,7 +90,7 @@ exports.getDatabase = function(config) {
       break;
     case 'mongodb:':
       res.type = 'mongodb';
-      res.adapter = 'lockit-mongodb-adapter';
+      res.adapter = '../lockit-mongodb-adapter';
       break;
     case 'postgres:':
       res.type = 'postgresql';
