@@ -35,6 +35,20 @@ exports.restrict = function(config) {
 
   return function(req, res, next) {
     if (req.session.loggedIn) {return next(); }
+
+    var reqRoute = path.posix.resolve(req.path)
+
+    var extraStaticRoutes =  config.extraStaticRoutes || []
+
+    var match = config.extraStaticRoutes.reduce((a, r) => {
+      if(a) { return a }
+      if(reqRoute.match(new RegExp(r))) { return true }
+    }, false)
+
+    if(match) {return next(); }
+
+    if(reqRoute === '/') {return next(); }
+
     if (config.rest) {return res.send(401); }
     res.redirect(route + '?redirect=' + req.originalUrl);
   };
