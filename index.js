@@ -3,6 +3,7 @@
 var url = require('url');
 var base32 = require('thirty-two');
 var totp = require('notp').totp;
+var path = require('path')
 
 /**
  * Prevent users who aren't logged-in from accessing routes.
